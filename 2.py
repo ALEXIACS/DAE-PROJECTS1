@@ -26,7 +26,7 @@ while True:
           print(kittenFoodWet)
           print("Another products that I recomend you are:")
           print(otherProductsforHealth)
-          answer5 = input("Would you like to be redirectioned with link on all this information?")
+          answer5 = input("Would you like to be redirectioned onto a web page that sells this products??  (y/n)")
           if answer5 == 'y':
             print("You will be redirectioned shortly")
             print("Loading.........")
