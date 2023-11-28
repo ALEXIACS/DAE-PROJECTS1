@@ -37,9 +37,17 @@ def question2():
 def noanswer(user_name):
     print("Sorry, " + user_name + " I don't understand your answer :c ")
 
+#terminate process
+def terminate(user_name):
+    return input( user_name + " would you like to end this process??  y/n  :"). lower()
+
 #end process question
 def question3(user_name):
-    return input("Sorry " + user_name + ", this is a conversation about cats, would you like to terminate this process??  y/n : ").lower() == 'y'
+    return input("Sorry " + user_name + ", this is a conversation about cats, would you like to terminate this process??  y/n : ").lower()
+
+#finished code
+def no_updated(user_name):
+    print("Sorry " + user_name + " this function hasn't beeen developed yet!!")
 
 #loading 'bar'
 def answer():
@@ -60,30 +68,51 @@ def recomendations_kitten():
     print("I recommend you these products!!")
     print(kittenFoodWet)
 
-
-
 # START
 def main():
     while True:
         user_name = get_user_name()
         greet_user(user_name)
-        cat(user_name)
+#Asking if the user has a cat
         if cat(user_name) == 'y':
+#get cat name
             cat_name(user_name)
-            name_cat = cat_name()
+            name_cat = cat_name(user_name)
             greet_cat(name_cat)
-            question(user_name)
+#Asking if the user wants to know more about cat food
             if question(user_name) == 'y':
                 print(AdultCatWetFoodList)
                 print(adultCatDryFoodList)
-                question2(user_name)
-            if question2(user_name) == 'y':
-                answer()
-                url = "https://www.amazon.com/Healthy-Cat-Food/s?k=Healthy+Cat+Food"
-                url1 = "https://www.amazon.com/Healthy-Kitten-Food/s?k=Healthy+Kitten+Food"
-                webbrowser.open (url1)
-                webbrowser.open(url)
-                break
+                if question2(user_name) == 'y':
+                    answer()
+                    url = "https://www.amazon.com/Healthy-Cat-Food/s?k=Healthy+Cat+Food"
+                    url1 = "https://www.amazon.com/Healthy-Kitten-Food/s?k=Healthy+Kitten+Food"
+                    webbrowser.open (url1)
+                    webbrowser.open(url)
+                    break
+                else:
+                    answer()
+                    noanswer(user_name)
+                    terminate()
+                    if terminate() == 'y':
+                        answer()
+                        break
+                    if terminate() == 'n': 
+                        no_updated()
+                        answer()
+                        break
+                    else:
+                        noanswer(user_name)
+                        answer()
+                        terminate()
+                        if terminate() == 'y':
+                            answer()
+                            break
+                        else:
+                            answer()
+                            no_updated(user_name)
+                            answer()
+                            break
             else:
                 while True:
                     if question2() == 'n':
@@ -95,6 +124,8 @@ def main():
             if question3(user_name) == 'y':
                 break
             if question3(user_name) == 'n':
+                no_updated(user_name)
+                answer()
                 break
 if __name__ == "__main__":
     main()
